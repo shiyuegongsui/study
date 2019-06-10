@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class学习啦</title>
+    <script>
+        // 类的声明
+        // es5中
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function () {
+            console.log("say~~~~");
+        }
+        var p1 = new Person("tom", 20);
+        console.log(p1);
+        p1.say();
+
+
+        
+        // es6中
+        class Person2 {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                console.log("say~~~~");
+
+            }
+        }
+        var p2 = new Person2("tom", 20);
+        console.log(p2);
+        p2.say();
+
+
+
+        //类的静态方法 static的使用
+        class Person3 {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // 静态方法 不会挂载到类的实例上
+            // 使用方式  Person3.Isperson    
+            static Isperson(obj) {
+                return obj instanceof Person3;
+            }
+            say() {
+                console.log("say~~~~");
+            }
+        }
+        var p3 = new Person3("tom", 20);
+        console.log(Person3.Isperson(p3));
+
+
+
+        //类的继承 以及super的使用
+        class Coder extends Person3 {
+            constructor(name, age, money) {
+                super(name, age);
+                //super
+                //相当于父类的变量赋值   this.name=name; this.age=age;
+                // 如果不写super(); 会报错
+                // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+                this.money = money;
+            }
+        }
+
+        var c1 = new Coder("tom", 20, 100);
+        console.log(c1);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
