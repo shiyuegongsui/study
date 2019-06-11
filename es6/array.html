@@ -7,8 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>数组新增的啦</title>
     <script>
-        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
 
+// 1.Array.of
+// 2.Array.isArray
+// 3.Array.find
+// 4、Array.from()
+// 5、arr.includes(valueToFind[, fromIndex])
+// 6、slice
+// 7、concat
+
+    //学习地址  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
 
         // 1.Array.of
         // Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。
@@ -37,7 +45,7 @@
         console.log(Array.isArray(undefined));// false
 
 
-        // 2.Array.find
+        // 3.Array.find
         //返回值:find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
 
         var findItem = arr.find((e) => {
@@ -53,17 +61,17 @@
         // ============================================================
 
         // es5常用
-        // 3、Array.from()
+        // 4、Array.from()
         //方法从一个类似数组或可迭代对象中创建一个新的，浅拷贝的数组实例。
         Array.from(document.querySelectorAll("div")).forEach((e) => {
             console.log(e);
         })
 
-        //4、arr.includes(valueToFind[, fromIndex])
+        //5、arr.includes(valueToFind[, fromIndex])
         //注意：对象数组不能使用includes方法来检测。
         //valueToFind  需要查找的元素值。  
         //fromIndex 从fromIndex 索引处开始查找 valueToFind。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜 （即使从末尾开始往前跳 fromIndex 的绝对值个索引，然后往后搜寻）。默认为 0。
-
+        //返回值 返回一个布尔值 Boolean ，如果在数组中找到了（如果传入了 fromIndex ，表示在 fromIndex 指定的索引范围中找到了）则返回 true 。
         var array1 = [1, 2, 3, { name: 1 }];
         console.log(array1.includes(2)); //true
         console.log(array1.includes({ name: 1 })); //false  对象数组不能使用includes方法来检测。
@@ -72,7 +80,7 @@
         // ============================================================
         // slice和concat这两个方法，仅适用于对不包含引用对象的一维数组的深拷贝
 
-        // 5、slice
+        // 6、slice
         // slice() 方法返回一个新的数组对象，这一对象是一个由 begin和 end（不包括end）决定的原数组的浅拷贝。原始数组不会被改变。
         //语法：arr.slice(begin, end);
         // 参数：begin（可选）
@@ -91,8 +99,9 @@
         var fruits = ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango'];
         var citrus = fruits.slice(1, 3);  //['Orange','Lemon'] （包含begin，但不包含end）
 
-        // 6、concat
+        // 7、concat
         // concat 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+         //返回值 返回一个新数组
         console.log(['a', 'b', 'c'].concat(['d', 'e', 'f'])); //["a", "b", "c", "d", "e", "f"]
     </script>
 </head>

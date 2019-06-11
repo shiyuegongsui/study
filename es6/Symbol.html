@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Symbol 生成一个独一无二的值
+        // 不支持语法："new Symbol()"
+        var sym1 = Symbol();
+        console.log(typeof sym1);  //symbol
+        var sym2 = Symbol('foo');
+        var sym3 = Symbol('foo');
+        console.log(sym2 == sym3); //false
+
+
+        //    Symbol的作用
+        var obj = {
+            a: 1
+        }
+        // 假如直接声明了一个a ，会把obj.a的内容直接覆盖掉。如果想不被修改 就只能声明一个 Symbol类型
+        var a = Symbol('a');
+        var b = Symbol('a');
+
+        obj[a] = 666;
+        obj[b] = 777;
+
+        console.log(obj); //{a: 1, Symbol(a): 1}
+        console.log(obj[a]);//666
+        console.log(obj.a);//1
+
+
+        // 使用for in 不会遍历出 Symbol的键名
+        for (var attr in obj) {
+            console.log(attr);
+            //只能遍历到a  Symbol为键名的不会被遍历出来
+        }
+
+        //需要使用这个静态方法去获取  返回的是一个数组
+        console.log(Object.getOwnPropertySymbols(obj));    //[Symbol(a), Symbol(a)]
+
+
+        // Symbol只能够转换成 Boolean类型（永远为true） 其他都会抛出异常
+
+        console.log(Boolean(Symbol("a")));  //true
+        console.log(Symbol("a")+1); // Cannot convert a Symbol value to a number
+        console.log(Symbol("a")+" "); // Cannot convert a Symbol value to a string
+
+
+    </script>
+</body>
+
+</html>
