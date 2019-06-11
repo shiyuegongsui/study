@@ -17,7 +17,7 @@
     console.log(b);
 
 
-// export 和 export default 都导出 一下两种方式
+// export 和 export default 都导出 以下两种方式
 
     // import c, { a as newA, newB, add } from "./export.js";
     import c, * as obj2 from "./export.js";
