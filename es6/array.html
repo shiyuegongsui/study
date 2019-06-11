@@ -7,7 +7,93 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>数组新增的啦</title>
     <script>
-        
+        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+
+
+        // 1.Array.of
+        // Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。
+        // Array.of() 和 Array 构造函数之间的区别在于处理整数参数：Array.of(7) 创建一个具有单个元素 7 的数组，而 Array(7) 创建一个长度为7的空数组（注意：这是指一个有7个空位(empty)的数组，而不是由7个undefined组成的数组）。
+        // ============================================================
+        // 创建数组
+        var arr = new Array(10, 20, 30);
+        console.log(arr); // [10, 20, 30]
+
+        var arr2 = new Array(10);//创建了7个空位(empty)的数组
+        console.log(arr2); //[empty × 10] 
+
+        var arr3 = Array.of(10, 20, 30);
+        console.log(arr3); // [10, 20, 30]
+
+        var arr4 = Array.of(10);
+        console.log(arr4); // [10]
+
+        // 2.Array.isArray
+        //语法:Array.isArray(obj)
+        //参数:obj
+        //返回值:如果对象是 Array，则为true; 否则为false。
+        console.log(Array.isArray([1, 2, 3]));// true
+        console.log(Array.isArray({ foo: 123 }));// false
+        console.log(Array.isArray("foobar"));// false
+        console.log(Array.isArray(undefined));// false
+
+
+        // 2.Array.find
+        //返回值:find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+
+        var findItem = arr.find((e) => {
+            return e == 10
+        });
+        console.log(findItem); //10
+
+        var findItem2 = arr.find((e) => {
+            return e == 40
+        })
+        console.log(findItem2); //undefined
+
+        // ============================================================
+
+        // es5常用
+        // 3、Array.from()
+        //方法从一个类似数组或可迭代对象中创建一个新的，浅拷贝的数组实例。
+        Array.from(document.querySelectorAll("div")).forEach((e) => {
+            console.log(e);
+        })
+
+        //4、arr.includes(valueToFind[, fromIndex])
+        //注意：对象数组不能使用includes方法来检测。
+        //valueToFind  需要查找的元素值。  
+        //fromIndex 从fromIndex 索引处开始查找 valueToFind。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜 （即使从末尾开始往前跳 fromIndex 的绝对值个索引，然后往后搜寻）。默认为 0。
+
+        var array1 = [1, 2, 3, { name: 1 }];
+        console.log(array1.includes(2)); //true
+        console.log(array1.includes({ name: 1 })); //false  对象数组不能使用includes方法来检测。
+
+
+        // ============================================================
+        // slice和concat这两个方法，仅适用于对不包含引用对象的一维数组的深拷贝
+
+        // 5、slice
+        // slice() 方法返回一个新的数组对象，这一对象是一个由 begin和 end（不包括end）决定的原数组的浅拷贝。原始数组不会被改变。
+        //语法：arr.slice(begin, end);
+        // 参数：begin（可选）
+        //      从该索引处开始提取原数组中的元素（从0开始）。
+        //      如果该参数为负数，则表示从原数组中的倒数第几个元素开始提取，slice(-2)表示提取原数组中的倒数第二个元素到最后一个元素（包含最后一个元素）。
+        //      如果省略 begin，则 slice 从索引 0 开始。
+        // 参数：end（可选）
+        //      在该索引处结束提取原数组元素（从0开始）。slice会提取原数组中索引从 begin 到 end 的所有元素（包含begin，但不包含end）。
+        //      slice(1,4) 提取原数组中的第二个元素开始直到第四个元素的所有元素 （索引为 1, 2, 3的元素）。
+        //      如果该参数为负数， 则它表示在原数组中的倒数第几个元素结束抽取。 slice(-2,-1)表示抽取了原数组中的倒数第二个元素到最后一个元素（不包含最后一个元素，也就是只有倒数第二个元素）。
+        //      如果 end 被省略，则slice 会一直提取到原数组末尾。
+        //      如果 end 大于数组长度，slice 也会一直提取到原数组末尾。
+
+        //返回值 一个含有提取元素的新数组
+
+        var fruits = ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango'];
+        var citrus = fruits.slice(1, 3);  //['Orange','Lemon'] （包含begin，但不包含end）
+
+        // 6、concat
+        // concat 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+        console.log(['a', 'b', 'c'].concat(['d', 'e', 'f'])); //["a", "b", "c", "d", "e", "f"]
     </script>
 </head>
 
