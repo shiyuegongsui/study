@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象新增的啦1 Object.is Object.assign </title>
+    <script>
+        // 1、使用变量名作为key值 （不支持以对象作为健名）
+        // ============================================================
+        var attrname = "height"; //正常的变量
+        var fn = "fn2"; //方法变量名
+        var obj = {
+            [attrname]: 100,
+            [fn]() {
+                console.log(1);
+                return 1;
+            }
+        }
+        console.log(obj);
+        obj.fn2()
+
+        // Object.is()
+        // Object.is()它用来比较两个值是否严格相等，与严格比较运算符（ === ）的行为基本一致，是在三等号判断的基础上新增了两个不同之处。
+        // Object.is()不同之处只有两个：一是+0不等于-0，二是NaN等于自身。
+        // ============================================================
+        console.log(Object.is(+0, -0));  //false
+        console.log(+0 === -0);  //true
+        console.log(Object.is(NaN, NaN)); //true
+        console.log(NaN === NaN);  //false
+        console.log(Object.is({}, {})); //false
+        console.log(Object.is([], [])); //false
+
+        //Object.assign
+        // Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+        //Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。
+        //注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+        // ============================================================
+        var obj = {
+            name: "1"
+        }
+        var obj2 = {
+            age: 23 // assign 之后修改这个值  obj的值不会发生变化
+        }
+        var obj3 = {
+            weight: 50,
+            name: "哈哈" //后面传入相同的key 会把前面的值给覆盖掉  
+        }
+        var returnedTarget = Object.assign(obj, obj2, obj3);
+        obj2.age = 3;
+        // returnedTarget.name="566";  如果加上这句  returnedTarget,obj的name都会变成 566
+        console.log(returnedTarget);//{name: "哈哈", age: 23, weight: 50} 
+        console.log(obj);//{name: "哈哈", age: 23, weight: 50} 
+        console.log(obj2);//{age: 3}
+        console.log(obj3);//{weight: 50, name: "哈哈"}
+
+
+        // Object.assign 可以把 n 个源对象拷贝到目标对象中去，如下
+        //Object.assign 浅拷贝还是深拷贝
+        //那到底是深拷贝还是浅拷贝呢，答案是第一级属性深拷贝，以后级别属性浅拷贝
+
+        //二级浅拷贝
+        let s = { name: { asd: '123' } }
+        let d = Object.assign({}, s)
+        d.name.asd = '123456789'
+        console.log(d); //{name:{asd: "123456789"}}
+        console.log(s); //{name:{asd: "123456789"}}
+
+        //一级深拷贝
+        let o = { name: { asd: '123' } }
+        let p = Object.assign({}, o)
+        p.name = '123456789'
+        console.log(p); //{name: "123456789"}
+        console.log(o); //{name:{asd: "123"}}
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

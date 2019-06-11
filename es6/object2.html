@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象新增的啦2 Object.keys()  Object.values()   Object.entries() </title>
+    <script>
+
+        // ============================================================
+        var obj = {
+            a: 1,
+            b: 2
+        }
+        for (attr in obj) {
+            console.log(attr);  //两次分别输出 a  b
+        }
+        // Object.keys() 
+        //入参：obj 要返回其枚举自身属性的对象。
+        //返回值：一个表示给定对象的所有可枚举属性的字符串数组。
+
+        console.log(Object.keys(obj));  //["a", "b"]
+
+        // Object.values() 
+        //入参：obj 被返回可枚举属性值的对象。
+        //返回值：一个包含对象自身的所有可枚举属性值的数组。
+        console.log(Object.values(obj));  //[1, 2]
+
+
+
+        // Object.entries() 
+        //入参：obj 可以返回其可枚举属性的键值对的对象。。
+        //返回值：给定对象自身可枚举属性的键值对数组。。
+        console.log(Object.entries(obj)); //[["a", 1],["b", 2]]
+
+
+
+        // ============================================================        
+        // ... 扩展运算符  把参数 打散成参数的形式
+
+        console.log(obj); //{a: 1, b: 2}
+        var res = {
+            ...obj, //把obj打散成参数的形式
+            c: 3
+        }
+        console.log(res);  //{a: 1, b: 2, c: 3}
+
+
+        var arr = [1, 2, 3, 4];
+        console.log(Math.max(arr)); //NaN 
+        console.log(Math.max(...arr)); //4 //把arr打散成参数的形式
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

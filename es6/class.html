@@ -8,7 +8,8 @@
     <title>class学习啦</title>
     <script>
         //面向对象的三要素： 封装、继承、多态(多态主要表现在，重写、重载)
- 
+
+        // ============================================================
         // 类的声明
         // es5中
         function Person(name, age) {
@@ -22,8 +23,7 @@
         console.log(p1);
         p1.say();
 
-
-
+        // ============================================================
         // es6中
         class Person2 {
             constructor(name, age) {
@@ -40,7 +40,7 @@
         p2.say();
 
 
-
+        // ============================================================
         //类的静态方法 static的使用
         class Person3 {
             constructor(name, age) {
@@ -59,8 +59,7 @@
         var p3 = new Person3("tom", 20);
         console.log(Person3.Isperson(p3));
 
-
-
+        // ============================================================
         //类的继承 以及super的使用
         class Coder extends Person3 {
             constructor(name, age, money) {
