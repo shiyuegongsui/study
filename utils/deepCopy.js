@@ -1,6 +1,7 @@
 
 //判断是不是数组
 function isArray(val) {
+    // instanceof示例坑    https://www.cnblogs.com/laiqun/p/5645801.html
     return Object.prototype.toString.call(val) === '[object Array]';
 }
 //判断是不是对象
