@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise链式调用</title>
+</head>
+
+<body>
+    <script>
+        /**
+            then函数执行后会返回一个新的Promise对象
+            如果then没有传入处理函数，那么会返回一个继承了上一个处理状态的 Promise 对象
+            如果then传入处理函数，那么默认返回一个 fulfilled/resolved 状态的 Promise 对象
+            如果then传入了处理函数，通过处理函数显示的return了一个新的 Promise，那么返回这个显示的 Promise 对象
+        **/
+
+        // 输出 4
+        //没有传入reject的处理函数，所以第二个then继承了上一个处理状态 输出4
+        new Promise((resolve, reject) => {
+            reject();
+        }).then(() => {
+            console.log(1);
+        }).then(() => {
+            console.log(3)
+        }, () => {
+            console.log(4)
+        })
+
+
+
+        // 输出 2 3
+        //reject已经有处理函数了，默认返回一个resolved状态  所以第二个then 输出了3
+        new Promise((resolve, reject) => {
+            reject();
+        }).then(() => {
+            console.log(1);
+        }, () => {
+            console.log(2)
+        }).then(() => {
+            console.log(3)
+        }, () => {
+            console.log(4)
+        })
+
+        // 输出 2 4
+        new Promise((resolve, reject) => {
+            reject();
+        }).then(() => {
+            console.log(1);
+        }, () => {
+            console.log(2);
+            return new Promise((resolve, reject) => {
+                reject();
+            })
+        }).then(() => {
+            console.log(3);
+        }, () => {
+            console.log(4);
+        })
+
+    </script>
+</body>
+
+</html>

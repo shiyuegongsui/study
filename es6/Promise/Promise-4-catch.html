@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>catch</title>
+</head>
+
+<body>
+    <script>
+        /**
+         *.catch方法
+         *处理 rejected 的情况，与 then 的第二个参数 onRejected 相同
+         *返回一个 Promise 对象，状态默认为 fulfilled/resolved
+         *可以捕获 catch 之前的 Promise Chain 中的任一错误（如果 Promise Chain 中的 then 没有处理的话）
+
+         **/
+
+
+        //输出reject
+        //该Promise Chain有处理reject的方法，导致了  catch不可用
+        new Promise((resolve, reject) => {
+            reject();
+        }).then(() => {
+            console.log('resolve');
+        }, () => {
+            console.log('reject');
+
+        }).catch((error) => {
+            console.log('error');
+
+        })
+
+
+        //输出error， 可以获取到catch方式
+        new Promise((resolve, reject) => {
+            reject();
+        }).then(() => {
+            console.log('resolve');
+        }).catch((error) => {
+            console.log('error');
+        }).then(()=>{
+            console.log(1);
+        })
+
+
+        
+        //例3中 问题的处理方式
+        new Promise((resolve, reject) => {
+            resolve();
+        }).then(() => {
+            console.log('登录成功')
+            return new Promise((resolve, reject) => {
+                if (false) {	//是否是管理员
+                    resolve();
+                } else {
+                    reject("我不是管理员");
+                }
+            })
+        }).then(() => {
+            console.log('是管理员');
+        }).then(() => {
+            console.log('拿到资源');
+        }).catch((res) => {
+            console.log('catch', res);
+        });
+    </script>
+</body>
+
+</html>

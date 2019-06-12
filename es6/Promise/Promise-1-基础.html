@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise基础</title>
+</head>
+
+<body>
+    <script>
+        let p1 = new Promise((resolve, reject) => {
+            // 要执行的异步任务
+			/**
+			 * resolve：函数，当我们调用该函数的时候，可以把当前Promise对象的任务状态该成resolved
+			 * reject：函数，当我们调用该函数的时候，可以把当前Promise对象的任务状态该成rejected
+			 * resolve, reject这两个函数是可以传入参数的，传入的参数将被传递给then中的函数进行使用
+             * 
+			 * 只要Promise的任务状态发生了变化，这个Promise对象的then方法就会被执行
+			 */
+            setTimeout(() => {
+                // resolve(10);	//resolved
+                reject();	//rejected
+            }, 2000);
+        });
+
+        p1.then((a) => {
+            // then方法就是Promise处理完任务以后继续执行的任务
+            console.log(a);
+        }, () => {
+            console.log('失败了');
+        });
+
+    </script>
+</body>
+
+</html>
