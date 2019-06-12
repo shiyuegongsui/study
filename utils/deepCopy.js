@@ -2,6 +2,11 @@
 //判断是不是数组
 function isArray(val) {
     // instanceof示例坑    https://www.cnblogs.com/laiqun/p/5645801.html
+    // 因为需要判断的数组必须是当前页面声明的； 
+    // 假设一个页面从存在一个iframe，iframe里面嵌入的子页面中定义了一个数组，并把这个数组赋值给父页面中的变量； 
+    // 因为数组是引用类型，所以这时候在父页面中通过instanceof判断这个变量是否为数组，将返回false；
+    
+    // 安全的方法：
     return Object.prototype.toString.call(val) === '[object Array]';
 }
 //判断是不是对象
