@@ -1,6 +1,9 @@
+
+//判断是不是数组
 function isArray(val) {
     return Object.prototype.toString.call(val) === '[object Array]';
 }
+//判断是不是对象
 function isObject(val) {
     return typeof val === 'object' && val !== null;
 }
@@ -27,8 +30,29 @@ function deepCopy(obj2) {
     return obj;
 }
 
+//深度合并
+function deepMerge(obj1, obj2) {
+    var obj = deepCopy(obj1);
+    for (var property in obj2) {
+        var val = obj[property];
+        var val2 = obj2[property];
+        if (isObject(val) && isObject(val2)) {
+            obj[property] = deepMerge(val, val2);
+        } else if (isObject(val2)) {
+            obj[property] = deepCopy(val2);
+        } else {
+            obj[property] = val2;
+        }
+    }
+
+    return obj;
+}
+
+
+
 export default {
     isArray,
     isObject,
-    deepCopy
+    deepCopy,
+    deepMerge
 };
