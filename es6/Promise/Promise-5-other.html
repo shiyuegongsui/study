@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>其他方法</title>
+</head>
+
+<body>
+    <script>
+
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(1)
+                resolve(10);
+            }, 1000);
+        });
+
+        let p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(2)
+                resolve(20);
+            }, 2000);
+        })
+
+        /**
+            Promise.all方法
+            多任务处理
+            Promise.all(iterable)
+            iterable：包含多个 Promise 的迭代器对象，比如数组
+            当迭代器对象中的所有 Promise 状态都会 fulfilled/resolved 的时候，整体才是 fulfilled/resolved，否则就是 rejected
+           //输出 [10,20]
+        **/
+        Promise.all([p1, p2]).then(arr => {
+            console.log(3, arr);
+        })
+
+        //Promise.race方法
+        //多任务处理
+        //Promise.race(iterable)
+        //iterable：包含多个 Promise 的迭代器对象，比如数组
+        //当迭代器对象中的首个任务完成（可以是fulfilled/resolved，也可能是 rejected）就会调用，并且状态取决于首个任务完成的状态
+        //输出 10 p1的所需要的时间更短
+        Promise.race([p1, p2]).then(arr => {
+            console.log(4, arr);
+        })
+
+
+        //Promise.resolve方法
+        // 返回一个 fulfilled/resolved 状态的 Promise 对象
+        //输出1
+        Promise.resolve().then(() => {
+            console.log(1)
+        }, () => {
+            console.log(2)
+        });
+
+        //Promise.reject 方法
+        //同 Promise.resolve 返回一个 rejected 状态的 Promise 对象
+        //输出2
+        Promise.reject().then(() => {
+            console.log(1)
+        }, () => {
+            console.log(2)
+        })
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

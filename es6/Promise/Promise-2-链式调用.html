@@ -46,6 +46,7 @@
         })
 
         // 输出 2 4
+        //如果then传入了处理函数，通过处理函数显示的return了一个新的 Promise，那么返回这个显示的 Promise 对象
         new Promise((resolve, reject) => {
             reject();
         }).then(() => {
