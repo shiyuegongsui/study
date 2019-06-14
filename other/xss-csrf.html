@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // xss(Cross Site Scripting | 跨站脚本攻击)
+
+            // XSS漏洞的起因就是没有对用户提交的数据进行严格的过滤处理
+            //学习地址   https://www.cnblogs.com/phpstudy2015-6/p/6767032.html
+
+            //解决办法：需要前后端配合
+                //【不相应用户提交的数据，过滤过滤过滤！】
+                // 1、将重要的cookie标记为http only, 这样的话Javascript 中的document.cookie语句就不能获取到cookie了.
+                // 2、表单数据规定值的类型，例如：年龄应为只能为int、name只能为字母数字组合。。。。
+                // 4、对数据进行Html Encode 处理
+                // 5、过滤或移除特殊的Html标签， 例如: <script>, <iframe> , &lt; for <, &gt; for >, &quot for
+                // 6、过滤JavaScript 事件的标签。例如 "onclick=", "onfocus" 等等。
+
+
+        // xsrf/csrf(Cross-site request forgery | 跨站请求伪造) 
+            // xsrf 正常来说 前端发起的请求默认都是会携带 cookie的 所以导致 模拟发起携带cookie的请求，从而达到攻击的效果
+            //学习地址 https://www.cnblogs.com/lovesong/p/5233195.html
+
+
+            // 1、get请求
+
+                //假如博客园有个加关注的GET接口，blogUserGuid参数很明显是关注人Id，如下：
+                // http://www.cnblogs.com/mvc/Follow/FollowBlogger.aspx?blogUserGuid=4e8c33d0-77fe-df11-ac81-842b2b196315
+                // 那我只需要在我的一篇博文内容里面写一个img标签：
+                // <img style="width:0;" src="http://www.cnblogs.com/mvc/Follow/FollowBlogger.aspx?blogUserGuid=4e8c33d0-77fe-df11-ac81-842b2b196315" />
+                // 那么只要有人打开我这篇博文，那就会自动关注我。
+
+            //2、post请求
+                //将下面的代码写成一页页面，在iframe或者在新页面中打开，直接执行了post请求，从而达到目的。
+                // <form  name="form1" action="http://www.cnblogs.com/mvc/Follow/FollowBlogger.aspx" method="post">
+                //   <input type="hidden" name="blogUserGuid" value="4e8c33d0-77fe-df11-ac81-842b2b196315"/>
+                //   <input type="submit" value>
+                // </form>
+                // <script>
+                //     document.forms.form1.submit();
+                // <\/script>
+
+
+            // 解决方式：
+                // 1. 尽量使用POST，限制GET
+                // 2. 加验证码
+                // 3. Anti CSRF Token
+    </script>
+</body>
+
+</html>
