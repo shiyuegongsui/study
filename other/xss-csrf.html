@@ -25,7 +25,8 @@
 
 
         // xsrf/csrf(Cross-site request forgery | 跨站请求伪造) 
-            // xsrf 正常来说 前端发起的请求默认都是会携带 cookie的 所以导致 模拟发起携带cookie的请求，从而达到攻击的效果
+            //xsrf 正常来说 前端发起的请求默认都是会携带 cookie的 所以导致 模拟发起携带cookie的请求，从而达到攻击的效果
+            //而请求头 是不会正常携带的，现在业界对CSRF的防御，一致的做法是使用一个Token
             //学习地址 https://www.cnblogs.com/lovesong/p/5233195.html
 
 
@@ -37,7 +38,7 @@
                 // <img style="width:0;" src="http://www.cnblogs.com/mvc/Follow/FollowBlogger.aspx?blogUserGuid=4e8c33d0-77fe-df11-ac81-842b2b196315" />
                 // 那么只要有人打开我这篇博文，那就会自动关注我。
 
-            //2、post请求
+            //2、post请求（form表单实现post请求）
                 //将下面的代码写成一页页面，在iframe或者在新页面中打开，直接执行了post请求，从而达到目的。
                 // <form  name="form1" action="http://www.cnblogs.com/mvc/Follow/FollowBlogger.aspx" method="post">
                 //   <input type="hidden" name="blogUserGuid" value="4e8c33d0-77fe-df11-ac81-842b2b196315"/>
