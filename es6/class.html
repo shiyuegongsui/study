@@ -70,9 +70,14 @@
                 // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
                 this.money = money;
             }
+            say() {
+                super.say(); //继承父类方法
+                console.log("hello");
+            }
         }
 
         var c1 = new Coder("tom", 20, 100);
+        c1.say();
         console.log(c1);
     </script>
 </head>
