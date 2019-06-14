@@ -32,6 +32,7 @@
 
         //bind  
         // bind 是返回对应函数，便于稍后调用；
+        // 参数：第一个参数 表示要修改的指向对象，  接下去的参数 代表函数的参数
         // 在Javascript中，多次 bind() 是无效的。更深层次的原因， 
         // bind() 的实现，相当于使用函数在内部包了一个 call / apply ，
         // 第二次 bind() 相当于再包住第一次 bind() ,故第二次以后的 bind 是无法生效的
@@ -40,11 +41,38 @@
             console.log(typeof this);  //无论传什么 返回的都是 object
             console.log(this.a + this.b + a + b);
         }
-        //bind返回的是一个函数 需要执行 而且只有一个参数
+        //bind返回的是一个函数 需要执行
+        fn2.bind({ a: 1, b: 2 }, 3, 4)()
+        // 等同于 
         fn2.bind({ a: 1, b: 2 })(3, 4)
 
         //第二次以后的 bind 是无法生效的
         fn2.bind({ a: 1, b: 2 }).bind({ a: 3, b: 4 })(3, 4) //10
+
+
+        //增加bind实现原理
+        Function.prototype.customeBind = function (thisArg, ...list) {
+            let self = this;  // 目标函数
+
+            let Bound = function (...arg2) {
+                // 如果这个函数作为了构造函数，那么目标函数的this，应该执行的是实例对象
+                // 如果这个不是作为构造函数，目标函数中的this还指向thisArg
+                let thisArgSelf = this instanceof Bound ? this : thisArg;
+                self.apply(thisArgSelf, [...list, ...arg2])
+            }
+
+            // 自己实现的bind函数，如果把返回的新函数当成了构造函数，此时会遇到问题，就是找不到目标函数原型上的方法，解决：放新函数继承目标函数的原型
+
+            // 原型继承
+            // Object.create 用来创建以某一个对象作为原型的对象的
+            Bound.prototype = Object.create(self.prototype);
+            Bound.prototype.constructor = self;
+
+            // 返回的新函数
+            return Bound
+        }
+
+
 
     </script>
 </body>
