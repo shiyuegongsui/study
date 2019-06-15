@@ -1,11 +1,25 @@
 
 //判断是不是数组
+var a = [];
+
 function isArray(val) {
-    // instanceof示例坑    https://www.cnblogs.com/laiqun/p/5645801.html
-    // 因为需要判断的数组必须是当前页面声明的； 
-    // 假设一个页面从存在一个iframe，iframe里面嵌入的子页面中定义了一个数组，并把这个数组赋值给父页面中的变量； 
-    // 因为数组是引用类型，所以这时候在父页面中通过instanceof判断这个变量是否为数组，将返回false；
-    
+
+    // 方法一： console.log([] instanceof Array)  //返回true
+    // 方法2二： console.log([].constructor == Array);  //true
+    // instanceof constructor
+    // 示例坑    
+    // https://www.cnblogs.com/laiqun/p/5645801.html
+    // https://www.cnblogs.com/lingdu87/p/9152806.html
+    // 注意：
+    // 使用instaceof和construcor,被判断的array必须是在当前页面声明的！比如，一个页面（父页面）有一个框架，框架中引用了一个页面（子页面），
+    // 在子页面中声明了一个array，并将其赋值给父页面的一个变量，这时判断该变量，Array ==object.constructor;会返回false；
+    // 原因：
+    // 1、array属于引用型数据，在传递过程中，仅仅是引用地址的传递。
+    // 2、每个页面的Array原生对象所引用的地址是不一样的，在子页面声明的array，所对应的构造函数，是子页面的Array对象；父页面来进行判断，使用的Array并不等于子页面的Array。
+    // 方法三：
+    // es6中可以使用
+    // Array.isArray
+
     // 安全的方法：
     return Object.prototype.toString.call(val) === '[object Array]';
 }
