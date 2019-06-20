@@ -9,7 +9,52 @@
 </head>
 
 <body>
+    <script>
+        /**
+         * resolve：函数，当我们调用该函数的时候，可以把当前Promise对象的任务状态该成resolved
+         * reject：函数，当我们调用该函数的时候，可以把当前Promise对象的任务状态该成rejected
+         * resolve, reject这两个函数是可以传入参数的，传入的参数将被传递给then中的函数进行使用
+         *
+         * 只要Promise的任务状态发生了变化，这个Promise对象的then方法就会被执行
+         */
 
+
+
+
+
+
+         
+
+        /**
+           then函数执行后会返回一个新的Promise对象
+           如果then没有传入处理函数，那么会返回一个继承了上一个处理状态的 Promise 对象
+           如果then传入处理函数，那么默认返回一个 fulfilled/resolved 状态的 Promise 对象
+           如果then传入了处理函数，通过处理函数显示的return了一个新的 Promise，那么返回这个显示的 Promise 对象
+        **/
+
+
+
+
+        /**
+            * 链式调用中，不易中途终止后续任务执行
+        **/
+
+
+
+
+
+
+
+        /**
+        *.catch方法
+        *处理 rejected 的情况，与 then 的第二个参数 onRejected 相同
+        *返回一个 Promise 对象，状态默认为 fulfilled/resolved
+        *可以捕获 catch 之前的 Promise Chain 中的任一错误（如果 Promise Chain 中的 then 没有处理的话）
+        **/
+
+
+
+    </script>
 </body>
 
 </html>
