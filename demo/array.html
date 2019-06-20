@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from    
+
+
+        var array1 = ['a', 'b', 'c'];
+
+        array1.forEach(function (element) {
+            console.log(element);
+            console.log(this);
+
+        }, { a: 1 });
+
+
+    </script>
+</body>
+
+</html>
