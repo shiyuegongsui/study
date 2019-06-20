@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 学习地址 https://www.jianshu.com/p/7b82a4c47f28
+
+        // valueOf和toString
+        // 这个问题的一个关键点就是在于利用 == 双等号工作原理，== 和 === 有什么区别呢？
+        // 最主要的就是用 == 的时候会涉及到类型转换，如果双等号两边数据类型不同会尝试将他们转化为同一类型。
+        // 基础数据类型之间的转换是比较简单的，这里来说一下对象类型在使用 == 时产生的隐形转换。
+
+
+    // 方法1：
+        // let a = {
+        //     i: 1,
+        //     toString() {
+        //         return a.i++
+        //     }
+        // }
+
+        // console.log(a == 1 && a == 2 && a == 3);
+
+     // 方法二
+        // var val = 0;
+        // Object.defineProperty(window, 'a', {
+        //     get: function () {
+        //         return ++val;
+        //     }
+        // });
+        // console.log(a == 1 && a == 2 && a == 3);
+
+
+
+    </script>
+</body>
+
+</html>
