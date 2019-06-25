@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数据劫持 OR 数据代理
+
+        //  https://mp.weixin.qq.com/s/SPoxin9LYJ4Bp0goliEaUw 
+
+        // Object.defineProperty
+        // 1:不能监听数组的变化
+        // 2:必须遍历对象的每个属性
+        // 3:必须深层遍历嵌套的对象
+
+        // let arr = [1, 2, 3]
+        // let obj = {}
+        // Object.defineProperty(obj, 'arr', {
+        //     get() {
+        //         console.log('get arr')
+        //         return arr
+        //     },
+        //     set(newVal) {
+        //         console.log('set', newVal)
+        //         arr = newVal
+        //     }
+        // })
+
+
+        let arr = [1, 2, 3]
+        let proxy = new Proxy(arr, {
+            get(target, key, receiver) {
+                console.log('get', key)
+                return Reflect.get(target, key, receiver)
+            },
+            set(target, key, value, receiver) {
+                console.log('set', key, value)
+                return Reflect.set(target, key, value, receiver)
+            }
+        });
+
+        console.log(proxy);
+        console.log(arr.push(4));
+
+        proxy.push(4);
+    </script>
+
+</body>
+
+</html>
