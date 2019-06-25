@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现  add(2)(1, 3, 4)(2, 3)(3)(4, 6)(7, 98)()
+        function add() {
+            // 用来缓存所有的arguments值  
+            // [].slice.call(arguments)能将具有length属性的对象转成数组。
+
+            let args = [].slice.call(arguments);
+            // 新建currying函数实现柯里化  
+            let currying = function () {
+                // 如果参数为空，那么递归停止，返回执行结果
+                if (arguments.length === 0) {
+                    return args.reduce((a, b) => a + b);
+                } else {
+                    // 否则将参数保存到args里面，返回currying方法
+                    args.push(...arguments);
+                    return currying
+                }
+            }
+            return currying
+        }
+        console.log(add(2)(1, 3, 4)(2, 3)(3)(4, 6)(7, 98)())
+
+
+
+        //实现 add2(2)(1, 3, 4)(2, 3)(3)(4, 6)(7, 98)
+        function add2() {
+            let args = [].slice.call(arguments);
+            let currying = function () {
+                args.push(...arguments);
+                return currying
+            }
+            currying.toString = function () {
+                return args.reduce((a, b) => a + b)
+            }
+            return currying
+        }
+        console.log(add2(2)(1, 3, 4)(2, 3)(3)(4, 6)(7, 98));
+
+
+    </script>
+</body>
+
+</html>
