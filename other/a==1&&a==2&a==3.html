@@ -18,17 +18,17 @@
         // 基础数据类型之间的转换是比较简单的，这里来说一下对象类型在使用 == 时产生的隐形转换。
 
 
-    // 方法1：
-        // let a = {
-        //     i: 1,
-        //     toString() {
-        //         return a.i++
-        //     }
-        // }
+        // 方法1：
+        let a = {
+            i: 1,
+            valueOf() {
+                return a.i++
+            }
+        }
 
-        // console.log(a == 1 && a == 2 && a == 3);
+        console.log(a == 1 && a == 2 && a == 3);
 
-     // 方法二
+        // 方法二
         // var val = 0;
         // Object.defineProperty(window, 'a', {
         //     get: function () {
@@ -39,6 +39,31 @@
 
 
 
+        // js中的valueOf和toString
+        // 值运算和显示问题，一般在隐式类型转换时会自动调用
+
+
+
+        // var aaa = {
+        //     i: 10,
+        //     valueOf: function () {
+        //         console.log('valueOf')
+        //         return this.i + 30;
+        //     },
+        //     toString: function () {
+        //         console.log('toString')
+        //         return this.i + 10;
+        //     }
+        // }
+        // console.log(aaa > 20); // valueOf  true
+        // console.log('' + aaa);  //  valueOf  40
+        // console.log(++aaa); // valueOf  41
+        // console.log(+aaa); //  valueOf  40
+        // alert(aaa); // toString 20
+        // console.log(aaa == 40) //valueOf true
+        // console.log(String(aaa)) // toString 20
+
+        // 总结：涉及到操作符的问题，valueOf的优先级比toString的优先级高，涉及到显示问题，toString方法优先级比valueOf方法高。
     </script>
 </body>
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var data = [
+            {
+                id: '1',
+                children: [
+                    {
+                        id: '11',
+                        children: [
+                            {
+                                id: '111',
+                            },
+                            {
+                                id: '112',
+                                children: [
+                                    {
+                                        id: '511',
+                                    },
+                                    {
+                                        id: '512',
+                                    },
+                                    {
+                                        id: '514',
+                                    },
+                                    {
+                                        id: '519',
+                                    },
+                                    {
+                                        id: '520',
+                                    }
+                                ]
+                            },
+                            {
+                                id: '113',
+                                children: [
+                                    {
+                                        id: '411',
+                                    },
+                                    {
+                                        id: '412',
+                                    },
+                                    {
+                                        id: '414',
+                                    },
+                                    {
+                                        id: '419',
+                                    },
+                                    {
+                                        id: '420',
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: '21',
+                children: [
+                    {
+                        id: '21',
+                        children: [
+                            {
+                                id: '211',
+                            },
+                            {
+                                id: '212',
+                            },
+                            {
+                                id: '213',
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        function getId(data, id) {
+            let finded = false;
+            var obj = {};
+            let fn = function (data, deep, parentId) {
+                for (let i = 0; i < data.length; i++) {
+                    if (finded) {
+                        if (parentId == 0) {
+                            return obj
+                        } else {
+                            break;
+                        }
+                    }
+                    if (deep == 0) {
+                        obj = {};
+                    }
+                    obj[deep] = data[i].id;
+                    if (data[i].id == id) {
+                        finded = true;
+                    } else if (data[i].children && data[i].children.length) {
+                        fn(data[i].children, deep + 1, data[i].id);
+                    }
+                }
+            }
+
+            fn(data, 0, 0);
+            let arr = [];
+            for (let key in obj) {
+                arr.push(obj[key]);
+            }
+            return arr
+        }
+
+        console.log(getId(data, '112'));
+    </script>
+</body>
+
+</html>
