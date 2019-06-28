@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://mp.weixin.qq.com/s?__biz=MjM5MzUxNTgyMg==&mid=2455602711&idx=1&sn=71532346e04a9894a566188d3e85daea&chksm=b13cf656864b7f40174e4a827b1c5dfb5ebb542837e5cde067350bc61c6b1428c1298c6c8195&mpshare=1&scene=23&srcid=#rd
+
+        // 函数防抖 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，都只执行最后一次
+        function debounce(fn, wait = 50, immediate) {
+            let timer = null
+            return function (...args) {
+                timer && clearTimeout(timer);
+                if (immediate && !timer) {
+                    fn.apply(this, args)
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this, args)
+                }, wait)
+            }
+        }
+
+
+        // 函数节流 throttle 指的是某个函数在一定时间间隔内（例如 3 秒）执行一次，在这 3 秒内 无视后来产生的函数调用请求
+
+        const throttle = (fn, wait = 50) => {
+            let previous = 0
+            return function (...args) {
+                let now = +new Date()
+                if (now - previous > wait) {
+                    previous = now
+                    fn.apply(this, args)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

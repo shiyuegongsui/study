@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        ; (function () {
+            let status = {
+                pedding: 0,
+                fulfilled: 1,
+                rejected: 2
+            }
+            class MyPromise {
+                constructor(func) {
+                    this._status = status.pedding;
+                    this._hander(func);
+                }
+                then() {
+                    //执行之后需要返回一个promise对象
+                }
+                //接受外部传入的函数，调用外部传入的函数
+                _hander(func) {
+
+                    func((value) => {
+
+                        console.log("成功啦");
+                    }, () => {
+                        console.log("成功啦");
+
+                    })
+                }
+                _resolve() {
+                    this._status = status.fulfilled;
+                }
+                _reject() {
+
+                }
+            }
+            window.MyPromise = MyPromise;
+        })();
+
+
+        var p1 = new MyPromise(() => {
+
+        }, () => {
+
+        })
+
+        console.log(p1);
+    </script>
+
+</body>
+
+</html>
