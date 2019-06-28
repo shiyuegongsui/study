@@ -16,6 +16,7 @@
         function debounce(fn, wait = 50, immediate) {
             let timer = null
             return function (...args) {
+
                 timer && clearTimeout(timer);
                 if (immediate && !timer) {
                     fn.apply(this, args)
@@ -25,6 +26,7 @@
                 }, wait)
             }
         }
+
 
 
         // 函数节流 throttle 指的是某个函数在一定时间间隔内（例如 3 秒）执行一次，在这 3 秒内 无视后来产生的函数调用请求
@@ -40,7 +42,13 @@
             }
         }
 
+        //扩展运算符  把参数转换数组
+        function a(...args) {
 
+            console.log(args); // [1,2,3,4]
+        }
+
+        a(1, 2, 3, 4);
 
     </script>
 </body>
