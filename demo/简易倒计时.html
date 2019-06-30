@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var a = new Date("2019-06-30 12:00:00");
+
+
+        function GetTime() {
+            var b = new Date();
+            var ts = parseInt((a - b) / 1000);
+            if (ts > 0) {
+                var Hours = checkTime(parseInt(ts / 60 / 60 % 24));
+                var Minutes = checkTime(parseInt(ts / 60 % 60));
+                var Seconds = checkTime(parseInt(ts % 60));
+                console.log({
+                    Hours,
+                    Minutes,
+                    Seconds
+                });
+                setTimeout(() => {
+                    GetTime();
+                }, 1000);
+            }
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        GetTime();
+
+
+
+
+    </script>
+</body>
+
+</html>

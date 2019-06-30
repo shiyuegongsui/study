@@ -23,17 +23,18 @@
                     this._status = status.pedding;
                     this._hander(func);
                 }
-                then() {
+                then(resolveFunc, rejectedFunc) {
+                    resolveFunc();
                     //执行之后需要返回一个promise对象
                 }
                 //接受外部传入的函数，调用外部传入的函数
                 _hander(func) {
-
                     func((value) => {
-
                         console.log("成功啦");
+                        this._resolve();
                     }, () => {
-                        console.log("成功啦");
+                        console.log("失败啦");
+                        this._reject();
 
                     })
                 }
@@ -41,6 +42,7 @@
                     this._status = status.fulfilled;
                 }
                 _reject() {
+                    this._status = status.rejected;
 
                 }
             }
@@ -48,10 +50,7 @@
         })();
 
 
-        var p1 = new MyPromise(() => {
-
-        }, () => {
-
+        var p1 = new MyPromise((resolve, rejected) => {
         })
 
         console.log(p1);
