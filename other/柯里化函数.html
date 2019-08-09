@@ -16,8 +16,10 @@
             // [].slice.call(arguments)能将具有length属性的对象转成数组。
 
             // let args = [].slice.call(arguments);
-            let args = Array.from(arguments);
-
+            // let args = Array.from(arguments);
+            let args = [];
+            args.push(...arguments);
+            
             // 新建currying函数实现柯里化  
             let currying = function () {
                 // 如果参数为空，那么递归停止，返回执行结果
