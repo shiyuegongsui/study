@@ -63,10 +63,10 @@ export default {
                             success: function (res) {
                                 index++;
                                 var localData = res.localData;
+                                //有些安卓机没有data:image/jpg;base64, 导致无法获取该图片的正确格式
                                 if (localData.indexOf('base64,') == -1) {
                                     localData = 'data:image/jpg;base64,' + localData;
                                 }
-                                let baseDetailImg = localData.split(";base64,");
                                 let formData = new FormData();
                                 formData.append('fileBase', that.base64ToBlob(localData));
                                 formData.append('ossDir', `qingdian/shops/${localStorage.getItem('shopId')}/offers/`);
