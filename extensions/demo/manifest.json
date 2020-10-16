@@ -1,0 +1,15 @@
+{
+    "name": "Hello Extensions",
+    "description": "Hello world Extension",
+    "version": "1.0",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "js": [
+                "js/jquery.min.js",
+                "js/background.js"
+            ],
+            "matches": ["https://www.hktvyb.com/*"]
+        }
+    ]
+}
