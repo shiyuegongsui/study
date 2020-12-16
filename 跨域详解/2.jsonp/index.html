@@ -5,27 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-
-        function jsonp(options) {
-            return new Promise((resolve, reject) => {
-                window[cb] = function (data) {
-                    resolve(data);
-                }
-                let script = document.createElement('script');
-                script.src = `${url}?${arrs.join('&')}`;
-                document.body.appendChild(script);
-            })
-        }
-
-        jsonp({
-            url:""
-        })
-    </script>
+  
 </head>
 
 <body>
+    <script>
 
+        //正常来说只能发起get请求
+        //不安全，返回的是一个方法，被请求方可以随意修改，可能会会植入执行性的代码，导致被攻击
+        jsonp({
+            url: ""
+        }).then((res) => {
+            console.log(res);
+        })
+    </script>
 </body>
 
 </html>

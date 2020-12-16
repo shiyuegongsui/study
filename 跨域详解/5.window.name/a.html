@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    a
+    <iframe src="http://127.0.0.1:4000/c.html" style="width:0;height:0;" frameborder="0" onload="load()" id="iframe"></iframe>
+    <script>
+
+        isFirst=true;
+        function load() {
+            let iframe= document.querySelector("#iframe");
+            if(isFirst){
+                iframe.src='http://127.0.0.1:3000/b.html';
+                isFirst=false;
+                return;
+            }
+            
+            console.log(JSON.stringify(iframe.contentWindow.name));
+ 
+        }
+    </script>
+</body>
+
+</html>

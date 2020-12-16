@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    index.2html
+    <iframe src="http://b.daze.com:3000/child.html" id="demo" onload="load()"></iframe>
+    <script>
+        document.domain='daze.com';
+        function load(){
+           var demo=document.querySelector("#demo");
+           console.log(demo.contentWindow.a);
+        }
+    </script>
+</body>
+</html>
