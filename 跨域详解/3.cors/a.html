@@ -14,6 +14,9 @@
         $.ajax({
             url: "http://127.0.0.1:3000/say",
             type: "post",
+            headers: {
+                name: 1
+            },
             success: function (res) {
                 console.log(res);
             }
@@ -22,6 +25,9 @@
         $.ajax({
             url: "http://127.0.0.1:4000/say",
             type: "post",
+            headers: {
+                name: 1
+            },
             success: function (res) {
                 console.log(res);
             }
