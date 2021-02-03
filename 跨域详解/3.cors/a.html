@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
     <title>Document</title>
 </head>
 
@@ -11,6 +15,8 @@
     Hello a
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script>
+
+        document.cookie = '43543543534534';
         $.ajax({
             url: "http://127.0.0.1:3000/say",
             type: "post",
@@ -22,16 +28,19 @@
             }
         })
 
-        $.ajax({
-            url: "http://127.0.0.1:4000/say",
-            type: "post",
-            headers: {
-                name: 1
-            },
-            success: function (res) {
-                console.log(res);
-            }
-        })
+        // $.ajax({
+        //     url: "http://127.0.0.1:4000/say",
+        //     type: "post",
+        //     headers: {
+        //         name: 1
+        //     },
+        //     xhrFields:{
+        //         withCredentials:true
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // })
 
     </script>
 </body>
