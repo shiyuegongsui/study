@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        //for in
+        //  数组、字符串 返回的是下标
+        //  对象返回的是 Key 
+
+
+
+        //for of
+        //  数组、字符串 返回的是key
+        //  不能遍历对象
+
+        let a = [1, 2, 3, 4, 56];
+        let b = {
+            a: 1,
+            b: 2,
+            c: 2
+        };
+        let c = "1121212";
+
+        for (let i in a) {
+            console.log(i);
+        }
+        for (let i in b) {
+            console.log(i);
+        }
+        for (let i in c) {
+            console.log(i);
+        }
+
+        for (let i of a) {
+            console.log(i);
+        }
+        for (let i of b) {
+            console.log(i);
+        }
+        for (let i of c) {
+            console.log(i);
+        }
+
+    </script>
+
+</body>
+
+</html>
